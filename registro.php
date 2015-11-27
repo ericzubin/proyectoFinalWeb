@@ -5,6 +5,6 @@
       <TITLE>Mi primer documento HTML</TITLE>
    </HEAD>
    <BODY>
-<h1>Inicio de sesión</h1>
+<h1>Registro del usuario</h1>
    </BODY>
 </HTML>
