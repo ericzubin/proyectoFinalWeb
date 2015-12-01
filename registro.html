@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link rel="stylesheet" type="text/css" href="css/estilos.css"/>
+
+</head>
+<body>
+
+<div id="registro">
+<h1>Bienvienido</h1>
+<p>Para Registrarte, completa los siguientes datos.</p>
+	<div id="formulario">
+<input type="text" name="usuario" id="usuario" placeholder="Usaurio"><br>
+<input type="text" name="nombre" id="nombre" placeholder="nombre"><br>
+<input type="email" name="email" id="email" placeholder="correo" ><br>
+<input type="password" name="password" id="password" placeholder="contraseña" ><br>
+<input type="password" name="passwordV" id="passwordV" placeholder="confirma contraseña" onblur="validarPassword()"><br>
+<p id="oculto"></p>
+</div>
+<button name="Registrar" name="registro" onclick="registrar()">Registrase </button>
+<p>O si ya estas regisgrado da clic <a href="">aqui</a></p>
+
+
+
+
+</div>
+<script type="text/javascript">
+function validarPassword()
+{
+	pass1=document.getElementById('password').value;
+	pass2=document.getElementById('passwordV').value;
+	if (pass1 != pass2 || pass1 == "" || pass2 == "") {
+					document.getElementById('oculto').innerHTML="Las contraseña no coinciden";
+					document.getElementById('password').style.border="1px solid red";
+				document.getElementById('passwordV').style.border="1px solid red";
+
+
+	}
+	else
+	{
+		document.getElementById('oculto').innerHTML="Las contraseñas coinciden";
+		document.getElementById('password').style.border="1px solid green";
+		document.getElementById('passwordV').style.border="1px solid green";
+
+
+	}
+
+}
+function registrar()
+{
+      username=document.getElementById('usuario').value;
+	nombre=document.getElementById('nombre').value;
+	email=document.getElementById('email').value;
+	pass1=document.getElementById('password').value;
+	pass2=document.getElementById('passwordV').value;
+	if(nombre == "")
+	{
+		document.getElementById('nombre').style.border="1px solid red";
+		document.getElementById('oculto').innerHTML="Te falto poder tu nombre";
+
+	}
+	else
+	{
+		document.getElementById('nombre').style.border="1px solid green";
+
+
+	}
+	if(email == "")
+	{
+		document.getElementById('email').style.border="1px solid red";
+            document.getElementById('oculto').innerHTML="Te falto poder tu corro";
+
+	}
+	else
+	{
+		document.getElementById('email').style.border="1px solid green";
+
+	}
+      if(username == "")
+	{
+		document.getElementById('usuario').style.border="1px solid red";
+            document.getElementById('oculto').innerHTML="Te falto poder tu nombre de Usuario";
+
+	}
+	else
+	{
+		document.getElementById('usuario').style.border="1px solid green";
+
+	}
+	
+
+      validarPassword();
+}
+
+
+function realizaProceso(){
+        var parametros = {
+
+                "usuario" : document.getElementById('usuario').value,
+                "nombre" : document.getElementById('nombre').value,
+                "email" : document.getElementById('email').value,
+                "pass" : document.getElementById('password').value
+        };
+        $.ajax({
+                data:  parametros,
+                url:   'registro.php',
+                type:  'post',
+                beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                        $("#resultado").html(response);
+                }
+        });
+}
+</script>
+</body>
+</html>
