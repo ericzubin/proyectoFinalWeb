@@ -1,7 +1,7 @@
 <?php
 // Datos constantes de conexion a la base de datos
 define("SERVIDOR" , "localhost");
-define("BASEDATOS" , "proyectoFinalWeb" );
+define("BASEDATOS" , "desarrollo_web_proyectofinal" );
 define("USUARIO", "root");
 define("CONTRASENA" , "1234");
 

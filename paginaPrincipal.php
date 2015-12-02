@@ -28,6 +28,7 @@
     
     
     <script>
+      //Busqueda mientras va tecleando
 function showResult(str) {
   if (str.length==0) { 
     document.getElementById("livesearch").innerHTML="";

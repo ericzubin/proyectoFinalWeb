@@ -3,6 +3,7 @@
 <head>
 <title>Page Title</title>
 <link rel="stylesheet" type="text/css" href="css/estilos.css"/>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
 
 </head>
 <body>
@@ -10,6 +11,7 @@
 <div id="registro">
 <h1>Bienvienido</h1>
 <p>Para Registrarte, completa los siguientes datos.</p>
+
 	<div id="formulario">
 <input type="text" name="usuario" id="usuario" placeholder="Usaurio"><br>
 <input type="text" name="nombre" id="nombre" placeholder="nombre"><br>
@@ -26,15 +28,15 @@
 
 </div>
 <script type="text/javascript">
-function validarPassword()
+function  validarPassword()
 {
 	pass1=document.getElementById('password').value;
 	pass2=document.getElementById('passwordV').value;
 	if (pass1 != pass2 || pass1 == "" || pass2 == "") {
-					document.getElementById('oculto').innerHTML="Las contraseña no coinciden";
-					document.getElementById('password').style.border="1px solid red";
-				document.getElementById('passwordV').style.border="1px solid red";
-
+			document.getElementById('oculto').innerHTML="Las contraseña no coinciden";
+			document.getElementById('password').style.border="1px solid red";
+			document.getElementById('passwordV').style.border="1px solid red";
+			return false;
 
 	}
 	else
@@ -42,55 +44,80 @@ function validarPassword()
 		document.getElementById('oculto').innerHTML="Las contraseñas coinciden";
 		document.getElementById('password').style.border="1px solid green";
 		document.getElementById('passwordV').style.border="1px solid green";
-
+		return true;
 
 	}
 
 }
-function registrar()
+function  validarNombre(nombre)
 {
-      username=document.getElementById('usuario').value;
-	nombre=document.getElementById('nombre').value;
-	email=document.getElementById('email').value;
-	pass1=document.getElementById('password').value;
-	pass2=document.getElementById('passwordV').value;
-	if(nombre == "")
+		if(nombre == "")
 	{
 		document.getElementById('nombre').style.border="1px solid red";
-		document.getElementById('oculto').innerHTML="Te falto poder tu nombre";
+		//document.getElementById('oculto').innerHTML="Te falto poder tu nombre";
+		return false;
 
 	}
 	else
 	{
 		document.getElementById('nombre').style.border="1px solid green";
-
+				//document.getElementById('oculto').innerHTML="";
+					return true;
 
 	}
+
+}
+function validaremail(email)
+{
 	if(email == "")
 	{
 		document.getElementById('email').style.border="1px solid red";
-            document.getElementById('oculto').innerHTML="Te falto poder tu corro";
+           // document.getElementById('oculto').innerHTML="Te falto poder tu corro";
+						return false;
 
 	}
 	else
 	{
 		document.getElementById('email').style.border="1px solid green";
-
+				//document.getElementById('oculto').innerHTML="";
+			return true;
 	}
+}
+function validarusername(username)
+{
+	
       if(username == "")
 	{
 		document.getElementById('usuario').style.border="1px solid red";
-            document.getElementById('oculto').innerHTML="Te falto poder tu nombre de Usuario";
+            //document.getElementById('oculto').innerHTML="Te falto poder tu nombre de Usuario";
+						return false;
 
 	}
 	else
 	{
 		document.getElementById('usuario').style.border="1px solid green";
+				//document.getElementById('oculto').innerHTML="";
+					return true;
 
 	}
-	
+}
 
-      validarPassword();
+function registrar()
+{
+    username=document.getElementById('usuario').value;
+	nombre=document.getElementById('nombre').value;
+	email=document.getElementById('email').value;
+	pass1=document.getElementById('password').value;
+	pass2=document.getElementById('passwordV').value;
+    var boolnombre=validarNombre(nombre);
+	 var boolemail=validaremail(email);
+	 var boolusername=validarusername(username);
+     var boolpass=validarPassword();
+	 if(boolnombre &&boolemail&&boolusername&&boolpass)
+	 {
+		 realizaProceso();
+	 }
+	
 }
 
 
@@ -114,6 +141,28 @@ function realizaProceso(){
                 }
         });
 }
+$('#usuario').focusout( function(){
+    if($('#usuario').val()!= ""){
+        $.ajax({
+            type: "POST",
+            url: "comprobar2user.php",
+            data: "b="+$('#usuario').val(),
+            success: function( respuesta ){
+				console.log(respuesta);
+              if(respuesta == 1)
+			  {
+			    document.getElementById('oculto').innerHTML="No disponible el usuario";
+			  }
+              else
+			  {
+
+				 document.getElementById('oculto').innerHTML="Disponible el usuario";
+			  }
+            }
+        });
+    }
+});
+
 </script>
 </body>
 </html>
