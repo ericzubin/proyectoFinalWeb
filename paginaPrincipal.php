@@ -13,6 +13,7 @@
    </HEAD>
    <BODY>
     <div>
+            <a href="salir.php">Cerrar Sesion</a>
       <img src="">
       <form>
       <input type="text" size="30" onkeyup="showResult(this.value)">

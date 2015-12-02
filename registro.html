@@ -3,7 +3,8 @@
 <head>
 <title>Page Title</title>
 <link rel="stylesheet" type="text/css" href="css/estilos.css"/>
- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>  
 
 </head>
 <body>
@@ -28,6 +29,7 @@
 
 </div>
 <script type="text/javascript">
+var boolDisponible;
 function  validarPassword()
 {
 	pass1=document.getElementById('password').value;
@@ -113,9 +115,15 @@ function registrar()
 	 var boolemail=validaremail(email);
 	 var boolusername=validarusername(username);
      var boolpass=validarPassword();
-	 if(boolnombre &&boolemail&&boolusername&&boolpass)
+	 if(boolnombre &&boolemail&&boolusername&&boolpass&&boolDisponible)
 	 {
+		 alert("Registro Correcto");
 		 realizaProceso();
+		 window.location.assign("http://localhost/proyectoFinalWeb/")
+	 }
+	 else{
+		 alert("Registro incorrecto");
+
 	 }
 	
 }
@@ -148,15 +156,19 @@ $('#usuario').focusout( function(){
             url: "comprobar2user.php",
             data: "b="+$('#usuario').val(),
             success: function( respuesta ){
-				console.log(respuesta);
+				console.log("La respuesta es"+respuesta);
               if(respuesta == 1)
 			  {
 			    document.getElementById('oculto').innerHTML="No disponible el usuario";
+
+				boolDisponible=false;
+								console.log("Estado"+boolDisponible);
 			  }
               else
 			  {
 
 				 document.getElementById('oculto').innerHTML="Disponible el usuario";
+				 boolDisponible=true;
 			  }
             }
         });

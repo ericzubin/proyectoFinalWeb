@@ -1,3 +1,31 @@
+<?php require_once('funciones/mysql.php'); ?>
+<?php
+if ( array_key_exists("Ingresar", $_POST) ) {
+			
+	if ( isset( $_POST['usuario'] ) && isset( $_POST['contrasena'] ) ) {
+		$_strUsuario = $_POST['usuario'];	
+		$_strContrasena = md5( $_strUsuario . $_POST['contrasena'] );
+		$_strSelectUsuario = "SELECT * FROM usuario WHERE nombreUsuario = '$_strUsuario' AND passwordUsuario = '$_strContrasena' ";
+		$_rsConsultaUsuario = ejecutaSQL( $_strSelectUsuario );
+		$_arrDatoUsuario = obtenerDatosConsulta ( $_rsConsultaUsuario );
+		
+		if( $_arrDatoUsuario['nombreUsuario'] ==  $_POST['usuario'] && $_arrDatoUsuario['passwordUsuario'] == $_strContrasena)
+		{
+			// Iniciamos la sesion
+			session_start();
+			$_SESSION['fecha_ingreso'] = time();
+			$_SESSION['t01usuario'] = $_arrDatoUsuario;
+			header("Location: paginaPrincipal.php");
+		}
+		else{
+			echo "<center><h3>Usuario y/o Contraseña Incorrecta</h3></center>";
+		}
+	}
+
+	liberarDatosSelect ( $_rsConsultaUsuario );
+}
+?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
@@ -5,25 +33,7 @@
       <TITLE>Inicio de sesión</TITLE>
    </HEAD>
    	<body>
-<script>
-function realizaProceso(valorCaja1, valorCaja2){
-        var parametros = {
-                "valorCaja1" : valorCaja1,
-                "valorCaja2" : valorCaja2
-        };
-        $.ajax({
-                data:  parametros,
-                url:   'ejemplo_ajax_proceso.php',
-                type:  'post',
-                beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
-                },
-                success:  function (response) {
-                        $("#resultado").html(response);
-                }
-        });
-}
-</script>
+
 <div >
   <div ></div>
 
@@ -45,7 +55,7 @@ function realizaProceso(valorCaja1, valorCaja2){
  <br/>
   <div class=""></div>
        <input type="submit" name="Ingresar"  value="Ingresar"  class=""/>
-       <input type="button" href="javascript:;" onclick="realizaProceso($('#valor1').val(), $('#valor2').val());retu" value="Ingresar"/>
+
 
 
 </form>

@@ -7,7 +7,9 @@ $xmlDoc=new DOMDocument();
 
 //get the q parameter from URL
 $q=$_GET["q"];
-$sqlSelectImagenes="SELECT * from nombreUsuario WHERE 'usuario LIKE '$q'";
+ 
+$sqlSelectImagenes="SELECT * from usuario WHERE 'usernameUsuario' LIKE '".$q."'";
+
 $resultSelect=ejecutaSQL($sqlSelectImagenes);
 $totalDatosDevueltos=totalFilasConsulta($resultSelect);
 $_arrDatos=obtenerDatosConsulta($resultSelect);
