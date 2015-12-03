@@ -56,3 +56,6 @@ border-color: #F2F2F2;
    {
            width: 261px;
    }
+   h1,h2,p,a{
+  font-family: 'PT Sans', sans-serif;  
+}

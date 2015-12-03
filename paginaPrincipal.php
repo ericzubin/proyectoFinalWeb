@@ -12,6 +12,7 @@ $_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];
 <HTML>
    <HEAD>
       <TITLE>Pagina PrincipalL</TITLE>
+      <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" type="text/css" href="css/plantillaPaginaWeb.css">
            <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>

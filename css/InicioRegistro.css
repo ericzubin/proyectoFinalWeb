@@ -19,3 +19,17 @@
     padding-left: 600px;
     margin-left: inherit;
 }
+input
+{
+    color: #979797;
+    height: 28px;
+    padding-left: 10px;
+    text-decoration: none;
+
+
+    border-radius: 5px; 
+    border: 0;
+}
+h1,p{
+  font-family: 'PT Sans', sans-serif;  
+}

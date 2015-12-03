@@ -36,7 +36,7 @@ if ( array_key_exists("Ingresar", $_POST) ) {
    <HEAD>
       <TITLE>Inicio de sesión</TITLE>
       <link rel="stylesheet" type="text/css" href="css/InicioRegistro.css">
-
+<link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
    </HEAD>
    	<body>
 		    <img src="img/Logo.jpg" id="logo">
