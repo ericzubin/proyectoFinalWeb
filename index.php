@@ -1,4 +1,7 @@
-<?php require_once('funciones/mysql.php'); ?>
+<?php require_once('funciones/mysql.php');
+	require_once('funciones/sesiones.php'); 
+
+ ?>
 <?php
 if ( array_key_exists("Ingresar", $_POST) ) {
 			
@@ -15,6 +18,7 @@ if ( array_key_exists("Ingresar", $_POST) ) {
 			session_start();
 			$_SESSION['fecha_ingreso'] = time();
 			$_SESSION['t01usuario'] = $_arrDatoUsuario;
+			
 			header("Location: paginaPrincipal.php");
 		}
 		else{

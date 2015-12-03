@@ -2,6 +2,8 @@
 	require_once('funciones/mysql.php');
 	require_once('funciones/sesiones.php'); 
 	//validaSesion();
+$_intId =$_SESSION['t01usuario']['idusuario'];
+$_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];  
 
   //  $_idUser=$_SESSION['t01usuario']['idUsuario'];
 ?> 
@@ -12,20 +14,58 @@
       <TITLE>Pagina PrincipalL</TITLE>
    </HEAD>
    <BODY>
-    <div>
+    <div id="barraSuperior">
             <a href="salir.php">Cerrar Sesion</a>
-      <img src="">
+           <h2><?php  echo $_stringNombre; ?>  </h2>   
       <form>
       <input type="text" size="30" onkeyup="showResult(this.value)">
       <div id="livesearch"></div> 
       </form>
       <h2><?php  ?></h2>
-    </div>
-    <h2></h2>
-    <img src="">
-    <div>
 
+    <h2></h2>
+    <a href="perfilPropio.php"> <img src="img/Logo.jpg"></a>
+
+   
     </div>
+<div id="Centro">
+  
+<div id="links">
+    <?php
+    $_strSelectUsuarioFotos = "SELECT * FROM archivo"; 
+    $_rsConsultaUsuario = ejecutaSQL( $_strSelectUsuarioFotos );
+    $_arrDatoUsuario = obtenerDatosConsulta ( $_rsConsultaUsuario );
+      do{
+//video    y   image
+if($_arrDatoUsuario['tipoIMagen']=="image")
+{
+     echo "<a href="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."''>".
+        "<img src="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo'] . "' WIDTH=267 HEIGHT=150 >
+    </a>";  
+}
+if($_arrDatoUsuario['tipoIMagen']=="video"){
+  echo "<video width='320' height='240' controls>
+  <source src='img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."' type='video/mp4'>
+</video>";
+}
+ 
+ 
+      }while ( $_arrDatoUsuario = obtenerDatosConsulta($_rsConsultaUsuario ));
+        /*
+foreach ($_arrDatoUsuario as $_datosUsuarios => $valor) {
+                    echo "CLAVE $_datosUsuarios  VALOR $valor";
+
+            }        
+*/
+
+ 
+          
+
+
+ ?>
+ </div>
+  </div>
+
     
     
     <script>
