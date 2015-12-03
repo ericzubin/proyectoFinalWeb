@@ -13,7 +13,7 @@ $_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];
    <HEAD>
       <TITLE>Pagina PrincipalL</TITLE>
             <link rel="stylesheet" type="text/css" href="css/plantillaPaginaWeb.css">
-             <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+           <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
    </HEAD>
    <BODY>
@@ -37,29 +37,53 @@ $_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];
     $_strSelectUsuarioFotos = "SELECT * FROM archivo"; 
     $_rsConsultaUsuario = ejecutaSQL( $_strSelectUsuarioFotos );
     $_arrDatoUsuario = obtenerDatosConsulta ( $_rsConsultaUsuario );
+    //SELECT comentario FROM comentario WHERE idImegen=17;
+    $_intPosicion=1;
       do{
 //video    y   image
 if($_arrDatoUsuario['tipoIMagen']=="image")
 {
+  
 
      echo "<div id='elemento'><a href="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."''>".
         "<img src="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo'] . "' id='elementoGrafico' >
     </a></div>";
-     echo "  <input type='hidden' name='id_user' id='id_user' value='".$_stringNombre ."'>";
-       echo "  <input type='hidden' name='id_imagen' id='id_imagen' value='".$_arrDatoUsuario['idArchivo'] ."'>";
+      $_strSelectComentarios = "SELECT comentario FROM comentario WHERE idImegen=".$_arrDatoUsuario['idArchivo'].""; 
+
+    $_rsConsultaComentario = ejecutaSQL( $_strSelectComentarios );
+    $_arrDatoComentario = obtenerDatosConsulta ( $_rsConsultaComentario );
+    do{
+      echo " <p>Comentario:". $_arrDatoComentario['comentario']."</p>";
+
+    }while ( $_arrDatoComentario = obtenerDatosConsulta($_rsConsultaComentario ));
+     echo "  <input type='hidden' name='id_user".$_intPosicion."' id='id_user".$_intPosicion."' value='".$_stringNombre ."'>";
+       echo "  <input type='hidden' name='id_imagen'".$_intPosicion." id='id_imagen".$_intPosicion."' value='".$_arrDatoUsuario['idArchivo'] ."'>";
   
 
-      echo "<input type='text' name='comentario' id='comentario' placeholder='comentario'><br> <button name='registro' onclick='realizaProceso()'>Comentar </button>";
+      echo "<input type='text' name='comentario' id='comentario".$_intPosicion."' placeholder='comentario'><br> <button name='registro' onclick='realizaProceso(".$_intPosicion.")'>Comentar </button>";
+          $_intPosicion++;
 }
 if($_arrDatoUsuario['tipoIMagen']=="video"){
   echo "<div id='elemento'><video  id='elementoGrafico1' controls>
   <source src='img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."' type='video/mp4'>
 </video></div>";
-echo "<input type='text' name='comentario' id='comentario' placeholder='comentario'><br> <button name='registro' onclick='realizaProceso()'>Comentar </button>";
-  echo "  <input type='hidden' name='id_user' id='id_user' value='".$_stringNombre ."'>";
-       echo "  <input type='hidden' name='id_imagen' id='id_imagen' value='".$_arrDatoUsuario['idArchivo'] ."'>";
+
+  echo "  <input type='hidden' name='id_user".$_intPosicion."' id='id_user".$_intPosicion."' value='".$_stringNombre ."'>";
+       echo "  <input type='hidden' name='id_imagen'".$_intPosicion." id='id_imagen".$_intPosicion."' value='".$_arrDatoUsuario['idArchivo'] ."'>";
+  
+
+      echo "<input type='text' name='comentario' id='comentario".$_intPosicion."' placeholder='comentario'><br> <button name='registro' onclick='realizaProceso(".$_intPosicion.")'>Comentar </button>";
+            $_strSelectComentarios = "SELECT comentario FROM comentario WHERE idImegen=".$_arrDatoUsuario['idArchivo'].""; 
+
+    $_rsConsultaComentario = ejecutaSQL( $_strSelectComentarios );
+    $_arrDatoComentario = obtenerDatosConsulta ( $_rsConsultaComentario );
+    do{
+      echo " <p>Comentario:". $_arrDatoComentario['comentario']."</p>";
+
+    }while ( $_arrDatoComentario = obtenerDatosConsulta($_rsConsultaComentario ));
+      $_intPosicion++;
 }
- 
+
       }while ( $_arrDatoUsuario = obtenerDatosConsulta($_rsConsultaUsuario ));
         /*
 foreach ($_arrDatoUsuario as $_datosUsuarios => $valor) {
@@ -102,15 +126,15 @@ function showResult(str) {
   xmlhttp.send();
 }
 
-function realizaProceso(){
-                                 console.log(document.getElementById('comentario').value);
-                               console.log(document.getElementById('id_user').value);
-                                  console.log(document.getElementById('id_imagen').value);
+function realizaProceso(intPosition){
+                                 console.log(document.getElementById('comentario'+intPosition).value);
+                               console.log(document.getElementById('id_user'+intPosition).value);
+                                  console.log(document.getElementById('id_imagen'+intPosition).value);
         var parametros = {
 
-                "comentario" : document.getElementById('comentario').value,
-                "usuario" : document.getElementById('id_user').value,
-                "idImagen" : document.getElementById('id_imagen').value
+                "comentario" : document.getElementById('comentario'+intPosition).value,
+                "usuario" : document.getElementById('id_user'+intPosition).value,
+                "idImagen" : document.getElementById('id_imagen'+intPosition).value
                 
                 
                 

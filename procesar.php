@@ -66,7 +66,7 @@ $dir="img/imagenesUsuarios";
 
 
 move_uploaded_file ($temp,"$dir/$alea1");
-echo "<img src=\"$dir/$alea1\" alt=\"Fotografia de la noticia.\" name=\"fotoNoticia\" align=\"middle\" width=\"400\" height=\"200\" />";
+header("Location: paginaPrincipal.php");
 
 
 ?> 
