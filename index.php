@@ -35,12 +35,15 @@ if ( array_key_exists("Ingresar", $_POST) ) {
 <HTML>
    <HEAD>
       <TITLE>Inicio de sesión</TITLE>
+      <link rel="stylesheet" type="text/css" href="css/InicioRegistro.css">
+
    </HEAD>
    	<body>
+		    <img src="img/Logo.jpg" id="logo">
 
-<div >
-  <div ></div>
+<div id="cuerpoCentral" >
 
+<h1>Inicio de sesion</h1>
 <form id="form1" name="form1"   method="post" action="index.php">
   <div class="form-group">
      <label for="inputUser3" class="">Usuario</label>
@@ -55,22 +58,19 @@ if ( array_key_exists("Ingresar", $_POST) ) {
   </div>
 <br>
 
-  </div>
+
  <br/>
-  <div class=""></div>
+
        <input type="submit" name="Ingresar"  value="Ingresar"  class=""/>
 
 
 
 </form>
  <br/>
- <br/>
- <br/>
-  <div class=""></div>
- 
- <p class="" >Registrarse<a href="Registarse.php"> aqui</a></p>
 
-</div>
+ <p class="" >Registrarse<a href="registro.html"> aqui</a></p>
+  </div>
+
 
 </body>
 

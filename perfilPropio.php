@@ -14,22 +14,31 @@ $_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];
    <HEAD>
       <TITLE><?php  $_stringNombreUsuario;?></TITLE>
    </HEAD>
+               <link rel="stylesheet" type="text/css" href="css/plantillaPaginaWeb.css">
    <BODY>
-    <div id="barraSuperior">
+     <div id="barraSuperior">
             <a href="salir.php">Cerrar Sesion</a>
-           <h2><?php  echo $_stringNombre; ?>  </h2>   
-      <form>
+           <h2 id="usuario"><a href="perfilPropio.php">Usuario: <?php  echo $_stringNombre; ?> </a> </h2>   
+      <form id="Busqueda">
       <input type="text" size="30" onkeyup="showResult(this.value)">
       <div id="livesearch"></div> 
       </form>
-      
-      <h2><?php  ?></h2>
+      <br>
+      <br>
+    <a href="paginaPrincipal.php"> <img src="img/Logo.jpg" id="logo"></a>
 
-    <h2></h2>
-    <a href="perfilPropio.php"> <img src="img/Logo.jpg" id="logo"></a>
-        </div>
+   
+    </div>
     <div id="Centro">
-  
+      <form action="procesar.php" method="post" enctype="multipart/form-data" id="form1" name="form1">
+<p>
+	Archivo 
+<input type="file" name="foto" id="textfield" >
+</p> 
+<p> 
+<input type="submit" name="button" id="button" value="Enviar" >
+</p>
+</form>  
 <div id="links">
     <?php
     $_strSelectUsuarioFotos = " SELECT * FROM `archivo` WHERE idUsuario = 17";
@@ -40,14 +49,16 @@ $_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];
 //video    y   image
 if($_arrDatoUsuario['tipoIMagen']=="image")
 {
-     echo "<a href="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."''>".
-        "<img src="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo'] . "' WIDTH=267 HEIGHT=150 >
-    </a>";  
+
+     echo "<div id='elemento'><a href="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."''>".
+        "<img src="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo'] . "' id='elementoGrafico' >
+    </a></div>";
+      
 }
 if($_arrDatoUsuario['tipoIMagen']=="video"){
-  echo "<video width='320' height='240' controls>
+  echo "<div id='elemento'><video  id='elementoGrafico1' controls>
   <source src='img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."' type='video/mp4'>
-</video>";
+</video></div>";
 }
  
  
@@ -92,14 +103,6 @@ function showResult(str) {
   xmlhttp.send();
 }
 </script>
-    <form action="procesar.php" method="post" enctype="multipart/form-data" id="form1" name="form1">
-<p>
-	Archivo 
-<input type="file" name="foto" id="textfield" >
-</p> 
-<p> 
-<input type="submit" name="button" id="button" value="Enviar" >
-</p>
-</form>  
+
    </BODY>
 </HTML>

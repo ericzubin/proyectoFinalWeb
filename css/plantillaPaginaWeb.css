@@ -1,0 +1,58 @@
+#barraSuperior
+{
+    height: 32%;
+    width: 100%;
+  border-style: outset;
+border-color: #F2F2F2;
+
+}
+#logo
+{
+    margin-top: -5.4%;
+    float: right;
+    height: 100px;
+    width: 126px;
+
+}
+#Busqueda
+{
+    margin-left: 36%;
+    margin-top: -43px;
+}
+#usuario
+{
+     float: none;
+    margin-top: auto;
+}
+#links
+{
+        margin-left: 40%;
+}
+#elementoGrafico
+{
+        height: 341px;
+
+}
+#elementoGrafico1
+{
+        height: 302px;
+
+}
+#elemento
+{
+          margin-left: -10%;
+    margin-top: 6%;
+    background: #F2F2F2;
+    height: 462px;
+    width: 534px;
+
+
+}
+#UsuarioPerfil
+{
+        margin-left: 36%;
+}
+   #livesearch
+   {
+           width: 261px;
+   }

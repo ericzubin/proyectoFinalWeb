@@ -13,20 +13,23 @@ $_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];
    <HEAD>
       <TITLE><?php  $_stringNombreUsuario;?></TITLE>
    </HEAD>
+               <link rel="stylesheet" type="text/css" href="css/plantillaPaginaWeb.css">
    <BODY>
-    <div id="barraSuperior">
+      <div id="barraSuperior">
             <a href="salir.php">Cerrar Sesion</a>
-           <h2><?php  echo $_stringNombre; ?>  </h2>   
-      <form>
+           <h2 id="usuario"><a href="perfilPropio.php">Usuario: <?php  echo $_stringNombre; ?> </a> </h2>   
+      <form id="Busqueda">
       <input type="text" size="30" onkeyup="showResult(this.value)">
       <div id="livesearch"></div> 
       </form>
-      <h2><?php  ?></h2>
+      <br>
+      <br>
+    <a href="paginaPrincipal.php"> <img src="img/Logo.jpg" id="logo"></a>
+
+   
     </div>
-    <h2></h2>
-    <a href="perfilPropio.php"> <img src="img/Logo.jpg"></a>
    <div id="Centro">
-  
+  <h2 id="UsuarioPerfil">Perfil del usuario: <?php echo $user;?> </h2>
 <div id="links">
     <?php
 
@@ -38,16 +41,17 @@ $_stringNombre= $_SESSION['t01usuario']['nombreUsuario'];
 //video    y   image
 if($_arrDatoUsuario['tipoIMagen']=="image")
 {
-     echo "<a href="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."''>".
-        "<img src="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo'] . "' WIDTH=267 HEIGHT=150 >
-    </a>";  
+
+     echo "<div id='elemento'><a href="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."''>".
+        "<img src="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo'] . "' id='elementoGrafico' >
+    </a></div>";
+      
 }
 if($_arrDatoUsuario['tipoIMagen']=="video"){
-  echo "<video width='320' height='240' controls>
+  echo "<div id='elemento'><video  id='elementoGrafico1' controls>
   <source src='img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."' type='video/mp4'>
-</video>";
+</video></div>";
 }
- 
  
       }while ( $_arrDatoUsuario = obtenerDatosConsulta($_rsConsultaUsuario ));
         /*
