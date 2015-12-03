@@ -47,7 +47,7 @@ if($_arrDatoUsuario['tipoIMagen']=="image")
 
      echo "<div id='elemento'><a href="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."''>".
         "<img src="."'img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo'] . "' id='elementoGrafico' >
-    </a></div>";
+    </a>";
       $_strSelectComentarios = "SELECT comentario FROM comentario WHERE idImegen=".$_arrDatoUsuario['idArchivo'].""; 
 
     $_rsConsultaComentario = ejecutaSQL( $_strSelectComentarios );
@@ -61,12 +61,13 @@ if($_arrDatoUsuario['tipoIMagen']=="image")
   
 
       echo "<input type='text' name='comentario' id='comentario".$_intPosicion."' placeholder='comentario'><br> <button name='registro' onclick='realizaProceso(".$_intPosicion.")'>Comentar </button>";
+       echo "</div>";
           $_intPosicion++;
 }
 if($_arrDatoUsuario['tipoIMagen']=="video"){
   echo "<div id='elemento'><video  id='elementoGrafico1' controls>
   <source src='img/imagenesUsuarios/".$_arrDatoUsuario['NombreArchivo']."' type='video/mp4'>
-</video></div>";
+</video>";
 
   echo "  <input type='hidden' name='id_user".$_intPosicion."' id='id_user".$_intPosicion."' value='".$_stringNombre ."'>";
        echo "  <input type='hidden' name='id_imagen'".$_intPosicion." id='id_imagen".$_intPosicion."' value='".$_arrDatoUsuario['idArchivo'] ."'>";
@@ -81,6 +82,7 @@ if($_arrDatoUsuario['tipoIMagen']=="video"){
       echo " <p>Comentario:". $_arrDatoComentario['comentario']."</p>";
 
     }while ( $_arrDatoComentario = obtenerDatosConsulta($_rsConsultaComentario ));
+    echo "</div>";
       $_intPosicion++;
 }
 

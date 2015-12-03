@@ -8,11 +8,11 @@ if ( array_key_exists("Ingresar", $_POST) ) {
 	if ( isset( $_POST['usuario'] ) && isset( $_POST['contrasena'] ) ) {
 		$_strUsuario = $_POST['usuario'];	
 		$_strContrasena = md5( $_strUsuario . $_POST['contrasena'] );
-		$_strSelectUsuario = "SELECT * FROM usuario WHERE nombreUsuario = '$_strUsuario' AND passwordUsuario = '$_strContrasena' ";
+		$_strSelectUsuario = "SELECT * FROM usuario WHERE usernameUsuario = '$_strUsuario' AND passwordUsuario = '$_strContrasena' ";
 		$_rsConsultaUsuario = ejecutaSQL( $_strSelectUsuario );
 		$_arrDatoUsuario = obtenerDatosConsulta ( $_rsConsultaUsuario );
 		
-		if( $_arrDatoUsuario['nombreUsuario'] ==  $_POST['usuario'] && $_arrDatoUsuario['passwordUsuario'] == $_strContrasena)
+		if( $_arrDatoUsuario['usernameUsuario'] ==  $_POST['usuario'] && $_arrDatoUsuario['passwordUsuario'] == $_strContrasena)
 		{
 			// Iniciamos la sesion
 			session_start();
